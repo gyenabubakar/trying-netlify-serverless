@@ -6,3 +6,16 @@
 	box-sizing: border-box;
 	transition: all 0.3s ease;
 }
+
+input {
+	@apply outline-none border-2 border-gray-400 rounded-md text-lg hover:border-gray-900 p-2;
+}
+
+.input-group {
+	width: 400px;
+	@apply mb-5;
+}
+
+.input-group label {
+	@apply inline-block mb-1;
+}
