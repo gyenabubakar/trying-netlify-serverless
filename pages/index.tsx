@@ -1,7 +1,7 @@
 import axios from 'axios';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 const Home: NextPage = () => {
 	const [fullName, setFullName] = useState('');
@@ -17,10 +17,12 @@ const Home: NextPage = () => {
 		setSubmitting(true);
 		axios
 			.post('/.netlify/functions/signup', {
-				fullName,
 				email,
 				password,
 				confirmPassword,
+				data: {
+					fullName,
+				},
 			})
 			.catch((err) => {
 				console.dir(err);
@@ -29,19 +31,6 @@ const Home: NextPage = () => {
 				setSubmitting(false);
 			});
 	}
-
-	async function getMessage() {
-		const response = await axios.get('/.netlify/functions/hello-world', {
-			params: {
-				name: 'John DOe',
-			},
-		});
-		console.log(response);
-	}
-
-	useEffect(() => {
-		getMessage();
-	}, []);
 
 	return (
 		<div>
