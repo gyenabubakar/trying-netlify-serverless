@@ -31,9 +31,12 @@ const Home: NextPage = () => {
 	}
 
 	async function getMessage() {
-		const response = await fetch('/.netlify/functions/hello-world');
-		const data = await response.json();
-		console.log(data);
+		const response = await axios.get('/.netlify/functions/hello-world', {
+			params: {
+				name: 'John DOe',
+			},
+		});
+		console.log(response);
 	}
 
 	useEffect(() => {
